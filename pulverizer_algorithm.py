@@ -8,12 +8,12 @@ def pulverizer(a, b):
         if abs(a) > abs(b):
                 x, y = abs(a), abs(b)
                 #x = c*a + d*b, y = e*a + f*d
-                c, d, e, f = 1 if a > 0 else -1, 0, 0, 1 if b > 0 else -1
+                c, d, e, f = 1, 0, 0, 1
                 case = 0
         else:
                 x, y = abs(b), abs(a)
                 #x = c*a + d*b, y = e*a + f*d
-                c, d, e, f = 1 if b > 0 else -1, 0, 0, 1 if a > 0 else -1
+                c, d, e, f = 1, 0, 0, 1
                 case = 1
         counter = 0	#counter of steps
         while y != 0:
@@ -22,9 +22,13 @@ def pulverizer(a, b):
                 r = x % y
                 x = y
                 y = r
-                counter = counter + 1
+                counter = counter + 1                
         if case  == 0:
+                if a*c+b*d != x:
+                        c, d = -c, -d
                 return x, counter, c, d
         else:
+                if a*d+b*c != x:
+                        c, d = -c, -d
                 return x, counter, d, c
         
